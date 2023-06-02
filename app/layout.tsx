@@ -46,7 +46,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
     <html lang="en">
       <head />
       <body>
-        <main>
+        <main className="w-full h-full">
           <AuthProvider defaultTenant={tenant}>{children}</AuthProvider>
         </main>
       </body>

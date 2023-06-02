@@ -66,7 +66,7 @@ const Home = () => {
 
   return (
     <section
-      className="w-full h-screen container flex
+      className="w-full h-screen container mx-auto flex
      justify-center items-center content-center"
     >
       <div className="flex flex-col justify-center items-center">

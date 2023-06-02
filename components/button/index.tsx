@@ -1,25 +1,24 @@
 import Link from "next/link";
 import { ReactNode } from "react";
+import Btn from "./Btn";
+
+export interface IButton {
+  children: ReactNode;
+  href?: string;
+  type?: "button" | "submit" | "reset";
+  variant?: "primary" | "secondary" | "default";
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  className?: string;
+}
 
 const Button = ({
   children,
   href,
   type,
-  variant,
+  variant = "default",
   onClick,
   className,
-}: {
-  children: ReactNode;
-  href?: string;
-  type?: "button" | "submit" | "reset";
-  variant: "primary" | "secondary" | "default";
-  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  className?: string;
-}) => {
-  if (!href && !onClick && !type && !variant) {
-    return <span>Please define one of the props</span>;
-  }
-
+}: IButton) => {
   const mainStyle = `${
     (variant === "default" &&
       "bg-green-500 hover:from-green-500 hover:to-green-400 hover:ring-green-400") ||
@@ -29,29 +28,26 @@ const Button = ({
       "bg-yellow-500 hover:from-yellow-500 hover:to-yellow-400 hover:ring-yellow-400")
   }  relative rounded px-5 py-2.5 overflow-hidden group hover:bg-gradient-to-r text-white  hover:ring-offset-2 transition-all ease-out duration-100 ${className}`;
 
-  const spanStyle =
-    "absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-24 bg-white opacity-20 rotate-12 group-hover:-translate-x-40 ease";
+  const Animations = () => (
+    <span className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-24 bg-white opacity-20 rotate-12 group-hover:-translate-x-40 ease"></span>
+  );
 
   if (!href) {
     return (
-      <button
-        {...(onClick && { onClick: onClick })}
-        type={type || "button"}
-        className={mainStyle}
-      >
-        <span className={spanStyle}></span>
+      <Btn onClick={onClick} type={type} className={mainStyle}>
+        <Animations />
         <span className="relative">{children}</span>
-      </button>
+      </Btn>
     );
   }
 
   return (
     <Link href={href || ""} className={mainStyle}>
-      <span className={spanStyle}></span>
+      <Animations />
       <span className="relative">
-        <button {...(onClick && { onClick: onClick })} type={type || "button"}>
+        <Btn onClick={onClick} type={type}>
           {children}
-        </button>
+        </Btn>
       </span>
     </Link>
   );
