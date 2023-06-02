@@ -82,23 +82,13 @@ const Home = () => {
 
         <hr className="w-full my-7" />
         <div className="flex justify-center items-center gap-5">
-          <Button
-            href="/login"
-            variant="default"
-            onClick={() => console.log("cliking")}
-          >
+          <Button href="/signup" variant="default">
             Sign Up
           </Button>
-          <Button
-            href="/login"
-            variant="primary"
-            onClick={() => console.log("cliking")}
-          >
+          <Button href="/login" variant="primary">
             Login
           </Button>
-          <Button variant="secondary" onClick={() => console.log("cliking")}>
-            Google SignIn
-          </Button>
+          <Button variant="secondary">Google SignIn</Button>
         </div>
       </div>
     </section>
