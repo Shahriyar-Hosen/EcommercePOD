@@ -11,11 +11,14 @@ import { useState } from "react";
 
 import { useAuth } from "@/auth/hooks";
 import Button from "@/components/button";
+import Input from "@/components/input";
 import { clientConfig } from "@/firebase/client-config";
 import { useFirebaseAuth } from "@/firebase/firebase-auth";
+import styles from "@/styles/page.module.css";
 
-const Home = () => {
+const HomeDemo = () => {
   const { tenant } = useAuth();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -65,44 +68,24 @@ const Home = () => {
   };
 
   return (
-    <section
-      className="w-full h-screen container flex
-     justify-center items-center content-center"
-    >
-      <div className="flex flex-col justify-center items-center">
-        <h1 className="text-center text-4xl pb-5 font-bold">
-          Next Firebase Auth Edge
-        </h1>
-        <h1 className="text-center text-xl">
-          Sign Up and Login In With Email And Password
-          <br onClick={() => console.log("object")} />
-          🟰🟰🟰🟰🟰
-          <br />
-        </h1>
-
-        <hr className="w-full my-7" />
-        <div className="flex justify-center items-center gap-5">
-          <Button
-            href="/login"
-            variant="default"
-            onClick={() => console.log("cliking")}
-          >
-            Sign Up
-          </Button>
-          <Button
-            href="/login"
-            variant="primary"
-            onClick={() => console.log("cliking")}
-          >
-            Login
-          </Button>
-          <Button variant="secondary" onClick={() => console.log("cliking")}>
-            Google SignIn
-          </Button>
-        </div>
-      </div>
-    </section>
+    <div className={styles.container}>
+      <form onSubmit={submitForm}>
+        <Input
+          label="E-mail"
+          onChange={(event) => setEmail(event.target.value)}
+        />
+        <Input
+          label="Password"
+          type="password"
+          onChange={(event) => setPassword(event.target.value)}
+        />
+        <Button type="submit">Login</Button>
+      </form>
+      <hr className="my-5" />
+      <Button onClick={() => handleSignUp(email, password)}>Sign Up</Button>
+      <Button onClick={handleGoogleLogin}>Log in with Google</Button>
+    </div>
   );
 };
 
-export default Home;
+export default HomeDemo;

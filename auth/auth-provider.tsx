@@ -1,13 +1,13 @@
 "use client";
 
-import * as React from "react";
-import { startTransition } from "react";
 import type { User as FirebaseUser } from "firebase/auth";
 import { IdTokenResult } from "firebase/auth";
-import { useFirebaseAuth } from "../firebase/firebase-auth";
+import * as React from "react";
+import { startTransition } from "react";
 import { clientConfig } from "../firebase/client-config";
-import { Tenant } from "../auth/types";
-import { AuthContext } from "../auth/context";
+import { useFirebaseAuth } from "../firebase/firebase-auth";
+import { AuthContext } from "./context";
+import { Tenant } from "./types";
 
 const mapFirebaseResponseToTenant = (
   result: IdTokenResult,
@@ -97,6 +97,8 @@ export const AuthProvider: React.FunctionComponent<AuthProviderProps> = ({
     return () => {
       unsubscribePromise.then((unsubscribe) => unsubscribe());
     };
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -1,13 +1,13 @@
-import "./globals.css";
+import "@/styles/globals.css";
 
 import { Tokens } from "next-firebase-auth-edge/lib/auth";
 import { filterStandardClaims } from "next-firebase-auth-edge/lib/auth/tenant";
 import { getTokens } from "next-firebase-auth-edge/lib/next/tokens";
 import { cookies } from "next/headers";
 
-import { Tenant } from "../auth/types";
-import { serverConfig } from "../firebase/server-config";
-import { AuthProvider } from "./auth-provider";
+import { AuthProvider } from "@/auth/auth-provider";
+import { Tenant } from "@/auth/types";
+import { serverConfig } from "@/firebase/server-config";
 
 const mapTokensToTenant = ({ decodedToken }: Tokens): Tenant => {
   const customClaims = filterStandardClaims(decodedToken);

@@ -1,18 +1,17 @@
-"use client"
+"use client";
 
-import Input from "@/components/input";
 import Button from "@/components/button";
+import Input from "@/components/input";
 import { useState } from "react";
 
 export default function LoginForm() {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-
-  const submitForm = (event: { preventDefault: () => void; }) => {
+  const submitForm = (event: { preventDefault: () => void }) => {
     event.preventDefault();
     console.log(email, password);
-  }
+  };
 
   return (
     <form onSubmit={submitForm}>
@@ -25,9 +24,9 @@ export default function LoginForm() {
         type="password"
         onChange={(event) => setPassword(event.target.value)}
       />
-      <Button type="submit">
+      <Button variant="primary" type="submit">
         Login
       </Button>
     </form>
-  )
+  );
 }
