@@ -14,7 +14,7 @@ export default function LoginForm() {
   };
 
   return (
-    <form onSubmit={submitForm}>
+    <form onSubmit={submitForm} className="flex flex-col justify-center">
       <Input
         label="E-mail"
         onChange={(event) => setEmail(event.target.value)}
@@ -24,7 +24,7 @@ export default function LoginForm() {
         type="password"
         onChange={(event) => setPassword(event.target.value)}
       />
-      <Button variant="primary" type="submit">
+      <Button className="mt-5" variant="primary" type="submit">
         Login
       </Button>
     </form>
